@@ -1,17 +1,17 @@
 <template>
   <div>
     <div class="imageHolder">
-      <img class="showInCenter" src="./1.jpg" alt="">
-      <img class="hideRight" src="./2.jpg" alt="">
-      <img class="hideRight" src="./3.jpg" alt="">
-      <img class="hideRight" src="./4.jpg" alt="">
-      <img class="hideRight" src="./5.jpg" alt="">
+      <img 
+        v-for="(img, index) in imgsArr"
+        :key="index"
+        :src="img"
+        ref="singleImage"
+        :class="index === 0 ? 'showInCenter' : 'hideRight'"
+      >
     </div>
 
-    <div>
-      <button :disabled="isDisabled" @click="showPreviousImage" class="btn">Left</button>
-      <button :disabled="isDisabled" @click="showNextImage" class="btn">Right</button>
-    </div>
+    <button :disabled="isDisabled" @click="showPreviousImage" class="btn">Left</button>
+    <button :disabled="isDisabled" @click="showNextImage" class="btn">Right</button>
   </div>
 </template>
 
@@ -20,6 +20,13 @@ export default {
   name: 'HelloWorld',
   data() {
     return {
+      imgsArr: [
+        require("./1.jpg"),
+        require("./2.jpg"),
+        require("./3.jpg"),
+        require("./4.jpg"),
+        require("./5.jpg"),
+      ],
       allChildren: [],
       index: 0,
       animationTime: 500,
@@ -78,7 +85,7 @@ export default {
     }
   },
   mounted() {
-    return this.allChildren = Array.from(document.getElementsByClassName("imageHolder")[0].children);
+    return this.allChildren = this.$refs.singleImage;
   }
 }
 </script>
@@ -112,6 +119,7 @@ export default {
   left: -256px // image width
 
 .btn
+  margin-top: 1rem
   &:disabled
     color: black
 </style>
