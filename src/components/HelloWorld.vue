@@ -27,7 +27,7 @@ export default {
         require("./4.jpg"),
         require("./5.jpg"),
       ],
-      allChildren: [],
+      allImagesArr: [],
       index: 0,
       animationTime: 500,
       isDisabled: false
@@ -38,20 +38,20 @@ export default {
       this.disableFastClickOnBtn();
       this.placeOtherImagesInWaitingPosition("hideRight");
       this.index++;
-      return (this.index !== this.allChildren.length)
+      return (this.index !== this.allImagesArr.length)
         ? this.nextNormal()
         : this.nextExeption();
     },
     nextNormal() {
-      this.allChildren[this.index - 1].classList = "moveLeft";
-      return this.allChildren[this.index].classList = "showInCenter";
+      this.allImagesArr[this.index - 1].classList = "moveLeft";
+      return this.allImagesArr[this.index].classList = "showInCenter";
     },
     nextExeption() {
       this.index = 0;
-      this.allChildren[this.allChildren.length - 1].classList = "moveLeft";
-      this.allChildren[0].classList = "hideRight";
+      this.allImagesArr[this.allImagesArr.length - 1].classList = "moveLeft";
+      this.allImagesArr[0].classList = "hideRight";
       return setTimeout(() => {
-        this.allChildren[0].classList = "showInCenter";
+        this.allImagesArr[0].classList = "showInCenter";
         this.index = 0;
       }, 0);
     },
@@ -64,14 +64,14 @@ export default {
     },
     prevNormal() {
       this.index--;
-      this.allChildren[this.index + 1].classList = "moveRight";
-      return this.allChildren[this.index].classList = "showInCenter";
+      this.allImagesArr[this.index + 1].classList = "moveRight";
+      return this.allImagesArr[this.index].classList = "showInCenter";
     },
     prevExeption() {
-      this.allChildren[0].classList = "moveRight";
+      this.allImagesArr[0].classList = "moveRight";
       return setTimeout(() => {
-        this.allChildren[this.allChildren.length - 1].classList = "showInCenter";
-        this.index = this.allChildren.length - 1;
+        this.allImagesArr[this.allImagesArr.length - 1].classList = "showInCenter";
+        this.index = this.allImagesArr.length - 1;
       }, 0);
     },
     disableFastClickOnBtn() {
@@ -81,11 +81,11 @@ export default {
       }, this.animationTime);
     },
     placeOtherImagesInWaitingPosition(className) {
-      return this.allChildren.forEach((div, idx) => (idx !== this.index) ? div.classList = className : null);
+      return this.allImagesArr.forEach((div, idx) => (idx !== this.index) ? div.classList = className : null);
     }
   },
   mounted() {
-    return this.allChildren = this.$refs.singleImage;
+    return this.allImagesArr = this.$refs.singleImage;
   }
 }
 </script>
