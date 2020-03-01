@@ -2,9 +2,9 @@
   <div>
     <div class="imagesHolder">
       <img 
-        v-for="(img, index) in imgsArr"
+        v-for="(img, index) in imagesNameArr"
         :key="index"
-        :src="img"
+        :src="`${require(`./${img}.jpg`)}`"
         ref="singleImage"
         :class="index === 0 ? 'showInCenter' : 'hideRight'"
       >
@@ -20,13 +20,7 @@ export default {
   name: 'HelloWorld',
   data() {
     return {
-      imgsArr: [
-        require("./1.jpg"),
-        require("./2.jpg"),
-        require("./3.jpg"),
-        require("./4.jpg"),
-        require("./5.jpg"),
-      ],
+      imagesNameArr: [1, 2, 3, 4, 5],
       allImagesArr: [],
       index: 0,
       animationTime: 500,
