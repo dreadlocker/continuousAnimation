@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="imageHolder">
+    <div class="imagesHolder">
       <img 
         v-for="(img, index) in imgsArr"
         :key="index"
@@ -91,7 +91,7 @@ export default {
 </script>
 
 <style scoped lang="sass">
-.imageHolder
+.imagesHolder
   width: 256px // image width
   height: 256px // image width
   position: relative
