@@ -2,9 +2,9 @@
   <div>
     <div class="imagesHolder">
       <img 
-        v-for="(img, index) in imagesNameArr"
+        v-for="(imgName, index) in imagesNameArr"
         :key="index"
-        :src="`${require(`./${img}.jpg`)}`"
+        :src="`${require(`./${imgName}.jpg`)}`"
         ref="singleImage"
         :class="index === 0 ? 'showInCenter' : 'hideRight'"
       >
